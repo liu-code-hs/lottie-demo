@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+}
+
+ul {
+  height: 50px;
+}
+li {
+  float: left;
+  list-style: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
