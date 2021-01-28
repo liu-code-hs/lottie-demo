@@ -38,21 +38,21 @@ const BMP = () => {
             autoplay: true,
             // path: 'https://gw.alipayobjects.com/os/sage/10726a69-0e6a-484f-a784-d57a812af9a6/lottie.json',
             animationData: animationData,
-            // rendererSettings: {
-            //     preserveAspectRatio: 'xMidYMid meet'
-            // }
             rendererSettings: {
-                // 指定canvasContext
-                context: canvasRef.current,
-                // 是否先清除canvas画布，canvas模式独占，默认false。
-                clearCanvas: true,
-                // 是否开启渐进式加载，只有在需要的时候才加载dom元素，在有大量动画的时候会提升初始化性能，但动画显示可能有一些延迟，svg模式独占，默认为false。
-                progressiveLoad: true,
-                // 当元素opacity为0时隐藏元素，svg模式独占，默认为true。
-                hideOnTransparent: true,
-                // 容器追加class，默认为''
-                className: 'cas'
+                preserveAspectRatio: 'xMidYMid meet'
             }
+            // rendererSettings: {
+            //     // 指定canvasContext
+            //     context: canvasRef.current,
+            //     // 是否先清除canvas画布，canvas模式独占，默认false。
+            //     clearCanvas: true,
+            //     // 是否开启渐进式加载，只有在需要的时候才加载dom元素，在有大量动画的时候会提升初始化性能，但动画显示可能有一些延迟，svg模式独占，默认为false。
+            //     progressiveLoad: true,
+            //     // 当元素opacity为0时隐藏元素，svg模式独占，默认为true。
+            //     hideOnTransparent: true,
+            //     // 容器追加class，默认为''
+            //     className: 'cas'
+            // }
         });
     }, [])
     const buttonStyle = {
