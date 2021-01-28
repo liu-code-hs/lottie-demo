@@ -11,7 +11,8 @@ const BMP = () => {
             renderer: 'svg',
             loop: true,
             autoplay: true,
-            animationData: JSON.parse(newJSON),
+            // animationData: JSON.parse(newJSON),
+            path: 'https://gw.alipayobjects.com/os/finxbff/2d0c4a95-568f-4923-bef0-e20fca6018ca/7abc1e3d-c381-49ed-ad54-3a48366f0180.json',
             rendererSettings: {
                 preserveAspectRatio: 'xMidYMid meet'
             }

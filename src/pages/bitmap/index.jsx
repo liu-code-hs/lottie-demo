@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Lottie from 'lottie-web'
 import animationData from './data.json'
+import lottieApi from 'lottie-api'
 import img0 from '../../assets/images/img_0.png'
 import img1 from '../../assets/images/img_1.png'
 import img2 from '../../assets/images/img_2.png'
@@ -37,21 +38,21 @@ const BMP = () => {
             autoplay: true,
             // path: 'https://gw.alipayobjects.com/os/sage/10726a69-0e6a-484f-a784-d57a812af9a6/lottie.json',
             animationData: animationData,
-            rendererSettings: {
-                preserveAspectRatio: 'xMidYMid meet'
-            }
             // rendererSettings: {
-            //     // 指定canvasContext
-            //     context: canvasRef.current,
-            //     // 是否先清除canvas画布，canvas模式独占，默认false。
-            //     clearCanvas: true,
-            //     // 是否开启渐进式加载，只有在需要的时候才加载dom元素，在有大量动画的时候会提升初始化性能，但动画显示可能有一些延迟，svg模式独占，默认为false。
-            //     progressiveLoad: true,
-            //     // 当元素opacity为0时隐藏元素，svg模式独占，默认为true。
-            //     hideOnTransparent: true,
-            //     // 容器追加class，默认为''
-            //     className: 'cas'
+            //     preserveAspectRatio: 'xMidYMid meet'
             // }
+            rendererSettings: {
+                // 指定canvasContext
+                context: canvasRef.current,
+                // 是否先清除canvas画布，canvas模式独占，默认false。
+                clearCanvas: true,
+                // 是否开启渐进式加载，只有在需要的时候才加载dom元素，在有大量动画的时候会提升初始化性能，但动画显示可能有一些延迟，svg模式独占，默认为false。
+                progressiveLoad: true,
+                // 当元素opacity为0时隐藏元素，svg模式独占，默认为true。
+                hideOnTransparent: true,
+                // 容器追加class，默认为''
+                className: 'cas'
+            }
         });
     }, [])
     const buttonStyle = {
@@ -69,26 +70,29 @@ const BMP = () => {
     // playSegments
     const playSegments = (segments, flag) => {
         // document.querySelectorAll('img')[1].src = img3;
-        console.log(window.lottie.renderer.elements[1], 'aca');
-        window.lottie.renderer.elements[1].assetData.p = img3
+        window.lottie.renderer.elements[1].innerElem.setAttributeNS(
+            'http://www.w3.org/1999/xlink',
+            'href',
+            img3
+        )
         window.lottie.playSegments(segments, flag);
        
     }
     const playEndSegments = () => {
-        console.log(window.lottie, 'ac');
-        // window.lottie.renderer.elements[1]
-        // window.lottie.renderer.elements[1].innerElem.setAttributeNS(
-        //     'http://www.w3.org/1999/xlink',
-        //     'href',
-        //     img3
-        // )
+        // html、cavans模式下
+        // window.lottie.renderer.elements[1].baseElement.querySelector('img').src = img3;
+        // svg模式
+        window.lottie.renderer.elements[1].innerElem.setAttributeNS(
+            'http://www.w3.org/1999/xlink',
+            'href',
+            img3
+        )
         // 替换后马上播放片段
         playSegments([0, 60], true);
     }
     return (
         <>
             <div style={{textAlign: 'center', position: 'relative', zIndex: 10}}>
-                <button onClick={() => playSegments([0, 12], true)} style={buttonStyle}>播放片段</button>
                 <button onClick={playEndSegments} style={buttonStyle}>替换图片从头播放</button>
                 <button onClick={() => playSegments([13, 60], true)} style={buttonStyle}>替换图片播放片段</button>
             </div>
